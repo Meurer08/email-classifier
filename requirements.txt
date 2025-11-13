@@ -1,0 +1,5 @@
+Flask
+transformers
+torch
+protobuf
+sentencepiece

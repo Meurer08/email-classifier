@@ -39,7 +39,6 @@ Atenciosamente,
 João Silva Gerente de Relacionamento
 """
 
-# === CLASSIFICAÇÃO ===
 candidatos = list(CANDIDATOS_CLASSIFICACAO.values())
 resultado_classificacao = classifier(texto_email, candidatos, multi_label=False)
 print(resultado_classificacao)
@@ -49,14 +48,16 @@ mapeamento_reverso = {v: k for k, v in CANDIDATOS_CLASSIFICACAO.items()}
 categoria_final = mapeamento_reverso.get(categoria, 'ERRO')
 print("Categoria:", categoria_final)
 
-# === PROMPT ===
+
 if categoria_final == "Produtivo":
     prompt = (
         "Você é um assistente corporativo responsável por responder e-mails profissionais.\n"
         "Responda de forma breve, formal e educada, informando que a solicitação está sendo analisada e que o retorno será enviado em breve.\n"
         "Evite se desculpar ou inventar informações novas.\n"
         "Não repita o conteúdo do e-mail original.\n"
-        "Apenas escreva o corpo da resposta, sem assinatura nem título.\n\n"
+        "Apenas escreva o corpo da resposta.\n" 
+        "sem assinatura nem título.\n\n"
+        "Apenas a resposta em texto simples.\n\n"
         f"E-mail recebido:\n{texto_email}\n\n"
         "Resposta:\nPrezado(a), "
     )
@@ -64,7 +65,9 @@ else:
     prompt = (
         "Você é um assistente cordial de e-mails corporativos.\n"
         "Escreva uma resposta curta e simpática de agradecimento à mensagem recebida.\n"
-        "Apenas escreva o corpo da resposta, sem assinatura nem título.\n\n"
+        "Apenas escreva o corpo da resposta.\n" 
+        "sem assinatura nem título.\n\n"
+        "Apenas a resposta.\n\n"
         "Não repita o e-mail, apenas agradeça de forma natural.\n\n"
         f"E-mail recebido:\n{texto_email}\n\n"
         "Resposta:\nPrezado(a), "
@@ -72,7 +75,7 @@ else:
 
 print("\nGerando Resposta...\n")
 
-# === GERAÇÃO ===
+
 resposta_gerada = generator(
     prompt,
     do_sample=True,

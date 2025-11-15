@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="layout">
+
+    <!-- Menu Lateral -->
+    <nav class="sidebar">
+        <h2 class="logo">EmailAI</h2>
+
+        <ul>
+            <li class="active">Emails</li>
+            <li>Uploads</li>
+            <li>Histórico</li>
+            <li>Configurações</li>
+        </ul>
+    </nav>
+
+    <!-- painel -->
+    <main class="content">
+        <div class="items-panel">
+            <div class="items-title">
+                <h2>Emails</h2>
+                <button class="add-item">Adicionar Email</button>
+            </div>
+
+
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Assunto</th>
+                        <th>Categoria</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+
+<div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+        <h2 id="modal-title">Detalhes do Email</h2>
+
+        <p><strong>ID:</strong> <span id="modal-id"></span></p>
+        <p><strong>Assunto:</strong> <span id="modal-assunto"></span></p>
+        <p><strong>Categoria:</strong> <span id="modal-categoria"></span></p>
+        <p><strong>Data:</strong> <span id="modal-data"></span></p>
+        <p><strong>Corpo:</strong> <span id="modal-corpo"></span></p>
+        <p><strong>Possivel Resposta:</strong> <span id="modal-possivel_resposta"></span></p>
+        <div id="loading-overlay" class="hidden">
+            <div class="spinner"></div>
+            <p class="loading-text">Carregando...</p>
+        </div>
+
+        <button id="generate-response" class="modal-action">Gerar Resposta</button>
+        <button id="close-modal" class="modal-close">Fechar</button>
+    </div>
+</div>
+
+<div id="modal-add" class="modal-2 hidden">
+    <div class="modal-content">
+
+        <h2>Adicionar Email</h2>
+
+        <label>Assunto:</label>
+        <input type="text" id="add-assunto" placeholder="Digite o assunto">
+
+        <label>Corpo do Email:</label>
+        <textarea id="add-corpo" placeholder="Escreva o corpo do email aqui..."></textarea>
+
+        <div class="upload-box">
+            <label for="file-upload" class="upload-label">Ou enviar arquivo (.txt ou .pdf)</label>
+            <input type="file" id="file-upload" accept=".txt, .pdf">
+        </div>
+
+        <div class="modal-actions">
+            <button id="btn-add-confirm" class="btn primary">Adicionar</button>
+            <button id="btn-add-close" class="btn danger">Cancelar</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

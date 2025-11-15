@@ -1,5 +1,5 @@
 Flask
 transformers
 torch
-protobuf
 sentencepiece
+huggingface-hub
